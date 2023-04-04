@@ -1,0 +1,12 @@
+.sign-up__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 79px 60px 60px 216px 65px 17px;
+    grid-template-areas:
+      "title"
+      "email"
+      "password"
+      "."
+      "submit"
+      "text";
+}

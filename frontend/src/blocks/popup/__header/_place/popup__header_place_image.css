@@ -1,0 +1,9 @@
+.popup__header_place_image {
+    color: white;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: calc(12/15);
+    margin: 10px 0 0 0;
+}

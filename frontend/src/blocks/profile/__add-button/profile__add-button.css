@@ -1,0 +1,29 @@
+.profile__add-button {
+    grid-area: add-button;
+    align-self: center;
+    justify-self: end;
+    margin: 0;
+    padding: 0;
+    min-width: 150px;
+    min-height: 50px;
+    border: 2px solid white;
+    border-radius: 2px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.profile__add-button:disabled {
+    opacity: .2;
+}
+
+@media screen and (max-width: 780px) {
+    .profile__add-button {
+        justify-self: center;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .profile__add-button {
+        justify-self: stretch;
+    }
+}

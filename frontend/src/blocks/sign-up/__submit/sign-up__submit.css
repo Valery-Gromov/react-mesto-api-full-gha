@@ -1,0 +1,14 @@
+.sign-up__submit {
+    height: 50px;
+    grid-area: submit;
+    padding: 0;
+    border: none;
+    background-color: white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: calc(22/18);
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}

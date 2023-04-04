@@ -1,0 +1,7 @@
+.item-animation {
+    transition: opacity .1s linear;
+}
+
+.item-animation:hover {
+    opacity: .6;
+}

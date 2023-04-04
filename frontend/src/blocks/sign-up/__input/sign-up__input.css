@@ -1,0 +1,29 @@
+.sign-up__input {
+    background-color: rgba(0, 0, 0, 1);
+    grid-area: email;
+    width: 100%;
+    min-height: 27px;
+    padding: 0;
+    border: none;
+    border-bottom: 2px solid rgba(204, 204, 204, 1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: calc(17/14);
+    color: #CCCCCC;
+}
+
+.sign-up__input:active {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.sign-up__input:hover {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.sign-up__input:focus {
+    outline: 0;
+    outline-offset: 0;
+}

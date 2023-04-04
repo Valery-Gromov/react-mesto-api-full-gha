@@ -1,0 +1,9 @@
+.popup__label_type_discription {
+    margin: 0 0 48px 0;
+}
+
+@media screen and (max-width: 780px) {
+    .popup__label_type_discription {
+        margin-bottom: 45px;
+    }
+}

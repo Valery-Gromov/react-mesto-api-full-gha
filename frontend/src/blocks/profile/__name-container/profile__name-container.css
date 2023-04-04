@@ -1,0 +1,7 @@
+.profile__name-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    column-gap: 18px;
+}
