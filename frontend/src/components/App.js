@@ -36,6 +36,8 @@ function App() {
 
     // Запрос данных профиля с сервера
     useEffect(() => {
+        const jwt = localStorage.getItem('token');
+        if (jwt) {
             api.getProfile()
                 .then(userData => {
                     setCurrentUser(userData)
@@ -44,10 +46,14 @@ function App() {
                     console.log(err);
                     localStorage.removeItem('token');
                 });
+        };
     }, [loggedIn]);
 
     // Запрос карточек с сервера
     useEffect(() => {
+        const jwt = localStorage.getItem('token');
+
+        if (jwt) {
             api.getInitialCards()
                 .then(cardsList => {
                     setCards(cardsList);
@@ -56,6 +62,7 @@ function App() {
                     // тут ловим ошибку
                     console.log(err)
                 });
+        };
     }, [loggedIn]);
 
     // Проверка токена
