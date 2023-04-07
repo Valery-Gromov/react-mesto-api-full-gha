@@ -39,19 +39,18 @@ app.post('/signup', celebrate({
     password: Joi.string().required(),
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
-    avatar: Joi.string().regex(/^(ftp|http|https):\/\/[^ "]+$/),
+    avatar: Joi.string().regex(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/),
   }),
 }), createUser);
 app.use(auth);
 app.use(routes);
+app.use('/*', (req, res, next) => {
+  next(new NotFoundError('Страница не найдена'));
+});
 
 app.use(errorLogger);
 
 app.use(errors());
-
-app.use('/*', (req, res, next) => {
-  next(new NotFoundError('Страница не найдена'));
-});
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

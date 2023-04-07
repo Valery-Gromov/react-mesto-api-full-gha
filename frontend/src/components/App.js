@@ -36,26 +36,27 @@ function App() {
 
     // Запрос данных профиля с сервера
     useEffect(() => {
-        api.getProfile()
-            .then(userData => {
-                setCurrentUser(userData)
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }, []);
+            api.getProfile()
+                .then(userData => {
+                    setCurrentUser(userData)
+                })
+                .catch(err => {
+                    console.log(err);
+                    localStorage.removeItem('token');
+                });
+    }, [loggedIn]);
 
     // Запрос карточек с сервера
     useEffect(() => {
-        api.getInitialCards()
-            .then(cardsList => {
-                setCards(cardsList);
-            })
-            .catch(err => {
-                // тут ловим ошибку
-                console.log(err)
-            });
-    }, []);
+            api.getInitialCards()
+                .then(cardsList => {
+                    setCards(cardsList);
+                })
+                .catch(err => {
+                    // тут ловим ошибку
+                    console.log(err)
+                });
+    }, [loggedIn]);
 
     // Проверка токена
     useEffect(() => {
@@ -142,7 +143,6 @@ function App() {
     function handleAddPlaceSubmit(data) {
         api.addCard(data.name, data.link)
             .then(newCard => {
-                console.log(newCard.data);
                 setCards([newCard.data, ...cards]);
                 closeAllPopups();
             })
@@ -153,13 +153,11 @@ function App() {
 
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
-        console.log(card);
         const isLiked = card.likes.some(id => id === currentUser._id);
 
         if (!isLiked) {
             api.addLike(card._id)
                 .then(newCard => {
-                    console.log(newCard);
                     setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
                 })
                 .catch(err => {
@@ -195,7 +193,7 @@ function App() {
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
-            <Header loggedIn={loggedIn} currentUserEmail={currentUserEmail} />
+            <Header setLoggedIn={setLoggedIn} loggedIn={loggedIn} currentUserEmail={currentUserEmail} />
             <Routes>
                 <Route
                     path="/main"

@@ -13,7 +13,7 @@ const cardSchema = new mongoose.Schema({
     type: String, // имя — это строка
     validate: {
       validator(v) {
-        return /^(ftp|http|https):\/\/[^ "]+$/.test(v);
+        return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test(v);
       },
       message: (props) => `${props.value} is not a valid url`,
     },

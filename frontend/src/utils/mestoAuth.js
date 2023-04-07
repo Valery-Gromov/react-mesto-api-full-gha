@@ -5,7 +5,6 @@ const getResponse = (res) => {
   };
 
 export const register = (userEmail, userPassword) => {
-    console.log('userEmail', userEmail, 'password', userPassword);
 
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
@@ -22,7 +21,6 @@ export const register = (userEmail, userPassword) => {
 }
 
 export const authorize = (userEmail, userPassword) => {
-    console.log('userEmail', userEmail, 'password', userPassword);
 
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',

@@ -8,11 +8,7 @@ const {
 
 router.get('/', getUsers);
 
-router.get('/me', celebrate({
-  params: Joi.object().keys({
-    me: Joi.string().alphanum(),
-  }),
-}), getCurrentUser);
+router.get('/me', getCurrentUser);
 
 router.get('/:id', celebrate({
   params: Joi.object().keys({
@@ -29,7 +25,7 @@ router.patch('/me', celebrate({
 
 router.patch('/me/avatar', celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().required().regex(/^(ftp|http|https):\/\/[^ "]+$/),
+    avatar: Joi.string().required().regex(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/),
   }),
 }), updateAvatar);
 

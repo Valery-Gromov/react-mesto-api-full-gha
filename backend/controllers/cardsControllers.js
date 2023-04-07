@@ -1,11 +1,9 @@
 const Card = require('../models/card');
 const NotFoundError = require('../utills/NotFoundError');
 const NoRightsError = require('../utills/NoRightsError');
+const ValidationError = require('../utills/ValidationError');
 
 const getCards = (req, res, next) => Card.find({})
-  .orFail(() => {
-    throw new NotFoundError('Карточка не найдена');
-  })
   .then((cards) => res.status(200).send(cards))
   .catch(next);
 
@@ -15,7 +13,13 @@ const createCard = (req, res, next) => {
 
   Card.create({ name, link, owner })
     .then((card) => res.send({ data: card }))
-    .catch(next);
+    .catch((err) => {
+      if (err.code === 400) {
+        next(new ValidationError('Некорретные данные при создании карточки'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 const deleteCard = (req, res, next) => {

@@ -5,14 +5,12 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotFoundError = require('../utills/NotFoundError');
 const ExistingDataError = require('../utills/ExistingDataError');
+const ValidationError = require('../utills/ValidationError');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = (req, res, next) => User.find({})
   .then((users) => {
-    if (!users) {
-      throw new NotFoundError('Пользователь не найден');
-    }
     res.status(200).send(users);
   })
   .catch(next);
@@ -57,6 +55,8 @@ const createUser = (req, res, next) => {
     .catch((err) => {
       if (err.code === 11000) {
         next(new ExistingDataError('Пользователь с таким email уже существует'));
+      } else if (err.code === 400) {
+        next(new ValidationError('Некорретные данные при создании карточки'));
       }
       next(err);
     });
@@ -68,7 +68,7 @@ const login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // аутентификация успешна! пользователь в переменной user
-      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
       // вернём токен
       res.send({ token });
     })
@@ -91,7 +91,13 @@ const updateProfile = (req, res, next) => {
       }
       res.send({ data: user });
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.code === 400) {
+        next(new ValidationError('Некорретные данные при создании карточки'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 const updateAvatar = (req, res, next) => {
@@ -111,7 +117,13 @@ const updateAvatar = (req, res, next) => {
       }
       res.send({ data: user });
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.code === 400) {
+        next(new ValidationError('Некорретные данные при создании карточки'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports = {

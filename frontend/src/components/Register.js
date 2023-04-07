@@ -27,7 +27,6 @@ function Register(props) {
 
     // здесь обработчик регистрации
     const {userEmail, userPassword} = formValue;
-    console.log(userEmail, userPassword);
 
     mestoAuth.register(userEmail, userPassword)
       .then((res) => {
