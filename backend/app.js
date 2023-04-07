@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
