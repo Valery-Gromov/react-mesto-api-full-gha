@@ -8,8 +8,6 @@ function Login(props) {
       userPassword: ''
    });
 
-   console.log(formValue);
-
    const handleChange = (e) => {
       const { name, value } = e.target;
 

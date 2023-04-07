@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import imgFail from '../images/img-fail.svg';
 
 import Header from './Header';
 import Main from './Main';
@@ -50,7 +49,6 @@ function App() {
     useEffect(() => {
         api.getInitialCards()
             .then(cardsList => {
-
                 setCards(cardsList);
             })
             .catch(err => {
@@ -72,7 +70,7 @@ function App() {
                 .then((res) => {
                     setLoggedIn(true);
                     navigate('/main', { replace: true });
-                    setCurrentUserEmail(res.data.email);
+                    setCurrentUserEmail(res.email);
                 })
                 .catch(err => {
                     console.log(err);
@@ -85,7 +83,6 @@ function App() {
         return mestoAuth.authorize(userEmail, userPassword)
             .then((res) => {
                 if (res.token) {
-                    console.log(res);
                     localStorage.setItem('token', res.token);
                     handleLogin();
                     navigate('/main', { replace: true });
@@ -123,7 +120,7 @@ function App() {
     function handleUpdateUser(data) {
         api.editProfile(data.name, data.about)
             .then(userData => {
-                setCurrentUser(userData);
+                setCurrentUser(userData.data);
                 closeAllPopups();
             })
             .catch(err => {
@@ -134,7 +131,7 @@ function App() {
     function handleUpdateAvatar(data) {
         api.uploadAvatar(data.avatar)
             .then(userData => {
-                setCurrentUser(userData);
+                setCurrentUser(userData.data);
                 closeAllPopups();
             })
             .catch(err => {
@@ -145,7 +142,8 @@ function App() {
     function handleAddPlaceSubmit(data) {
         api.addCard(data.name, data.link)
             .then(newCard => {
-                setCards([newCard, ...cards]);
+                console.log(newCard.data);
+                setCards([newCard.data, ...cards]);
                 closeAllPopups();
             })
             .catch(err => {
@@ -155,11 +153,13 @@ function App() {
 
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        console.log(card);
+        const isLiked = card.likes.some(id => id === currentUser._id);
 
         if (!isLiked) {
             api.addLike(card._id)
                 .then(newCard => {
+                    console.log(newCard);
                     setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
                 })
                 .catch(err => {
