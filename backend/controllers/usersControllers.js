@@ -55,7 +55,7 @@ const createUser = (req, res, next) => {
     .catch((err) => {
       if (err.code === 11000) {
         next(new ExistingDataError('Пользователь с таким email уже существует'));
-      } else if (err.code === 400) {
+      } else if (err.name === 'ValidationError') {
         next(new ValidationError('Некорретные данные при создании карточки'));
       }
       next(err);
@@ -92,7 +92,7 @@ const updateProfile = (req, res, next) => {
       res.send({ data: user });
     })
     .catch((err) => {
-      if (err.code === 400) {
+      if (err.name === 'ValidationError') {
         next(new ValidationError('Некорретные данные при создании карточки'));
       } else {
         next(err);
@@ -118,7 +118,7 @@ const updateAvatar = (req, res, next) => {
       res.send({ data: user });
     })
     .catch((err) => {
-      if (err.code === 400) {
+      if (err.name === 'ValidationError') {
         next(new ValidationError('Некорретные данные при создании карточки'));
       } else {
         next(err);
