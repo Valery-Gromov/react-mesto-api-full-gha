@@ -1,4 +1,4 @@
 # react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. Бэкенд расположите в директории `backend/`, а фронтенд - в `frontend/`. 
+The repository for the Mesto project application, which includes the frontend and backend parts of the application with the following features: user authorization and registration, operations with cards and users. 
 
-Адрес репозитория: https://github.com/Valery-Gromov/react-mesto-api-full-gha
+Repository address: https://github.com/Valery-Gromov/react-mesto-api-full-gha
