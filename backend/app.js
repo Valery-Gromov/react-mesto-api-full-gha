@@ -54,13 +54,13 @@ app.use(errors());
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  // если у ошибки нет статуса, выставляем 500
+  // if the error has no status, we set 500
   const { statusCode = 500, message } = err;
 
   res
     .status(statusCode)
     .send({
-      // проверяем статус и выставляем сообщение в зависимости от него
+      // check the status and send a message depending on it
       message: statusCode === 500
         ? 'На сервере произошла ошибка'
         : message,

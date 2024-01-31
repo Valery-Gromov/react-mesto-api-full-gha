@@ -2,29 +2,28 @@
 const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema({
-  name: { // у пользователя есть имя — опишем требования к имени в схеме:
-    type: String, // имя — это строка
-    required: true, // оно должно быть у каждого пользователя, так что имя — обязательное поле
-    minlength: 2, // минимальная длина имени — 2 символа
-    maxlength: 30, // а максимальная — 30 символов
+  name: {
+    type: String,
+    required: true,
+    minlength: 2,
+    maxlength: 30,
   },
-  link: { // у пользователя есть имя — опишем требования к имени в схеме:
-    // type: mongoose.Schema.Types.Url, // имя — это строка
-    type: String, // имя — это строка
+  link: {
+    type: String,
     validate: {
       validator(v) {
         return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test(v);
       },
       message: (props) => `${props.value} is not a valid url`,
     },
-    required: true, // оно должно быть у каждого пользователя, так что имя — обязательное поле
+    required: true,
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true,
   },
-  likes: [{ // описываем схему для одного элемента и заключаем её в квадратные скобки
+  likes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   }],

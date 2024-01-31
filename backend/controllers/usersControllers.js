@@ -20,7 +20,7 @@ const getUser = (req, res, next) => {
 
   return User.findById(id)
     .orFail(() => {
-      throw new NotFoundError('Пользователь не найден');
+      throw new NotFoundError('The user was not found');
     })
     .then((user) => res.status(200).send(user))
     .catch(next);
@@ -30,7 +30,7 @@ const getCurrentUser = (req, res, next) => {
   const id = req.user._id;
 
   return User.findById(id)
-    .orFail(() => { throw new NotFoundError('Пользователь не найден'); })
+    .orFail(() => { throw new NotFoundError('The user was not found'); })
     .then((user) => res.status(200).send(user))
     .catch(next);
 };
@@ -54,9 +54,9 @@ const createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.code === 11000) {
-        next(new ExistingDataError('Пользователь с таким email уже существует'));
+        next(new ExistingDataError('A user with this email already exists'));
       } else if (err.name === 'ValidationError') {
-        next(new ValidationError('Некорретные данные при создании карточки'));
+        next(new ValidationError('Incorrect data when creating the card'));
       }
       next(err);
     });
@@ -67,9 +67,9 @@ const login = (req, res, next) => {
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      // аутентификация успешна! пользователь в переменной user
+      // authentication is successful! the user in the user variable
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
-      // вернём токен
+      // return the token
       res.send({ token });
     })
     .catch(next);
@@ -81,19 +81,19 @@ const updateProfile = (req, res, next) => {
     req.user._id,
     { name, about },
     {
-      new: true, // обработчик then получит на вход обновлённую запись
-      runValidators: true, // данные будут валидированы перед изменением
+      new: true, // the handler will then receive an updated entry as input
+      runValidators: true, // the data will be validated before the change
     },
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Пользователь не найден');
+        throw new NotFoundError('The user was not found');
       }
       res.send({ data: user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new ValidationError('Некорретные данные при создании карточки'));
+        next(new ValidationError('Incorrect data when creating the card'));
       } else {
         next(err);
       }
@@ -107,19 +107,19 @@ const updateAvatar = (req, res, next) => {
     req.user._id,
     { avatar },
     {
-      new: true, // обработчик then получит на вход обновлённую запись
-      runValidators: true, // данные будут валидированы перед изменением
+      new: true, // the handler will then receive an updated entry as input
+      runValidators: true, // the data will be validated before the change
     },
   )
     .then((user) => {
       if (!user) {
-        throw new NotFoundError('Пользователь не найден');
+        throw new NotFoundError('The user was not found');
       }
       res.send({ data: user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new ValidationError('Некорретные данные при создании карточки'));
+        next(new ValidationError('Incorrect data when creating the card'));
       } else {
         next(err);
       }

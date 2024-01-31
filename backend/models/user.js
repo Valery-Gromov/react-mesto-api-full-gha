@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
       validator(v) {
         return validator.isEmail(v);
       },
-      message: 'Поле "email" должно быть валидным e-mail-адрессом',
+      message: 'The "email" field must be a valid e-mail address',
     },
   },
   password: {
@@ -21,20 +21,20 @@ const userSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
-  name: { // у пользователя есть имя — опишем требования к имени в схеме:
-    type: String, // имя — это строка
-    minlength: 2, // минимальная длина имени — 2 символа
-    maxlength: 30, // а максимальная — 30 символов
-    default: 'Жак-Ив Кусто',
+  name: {
+    type: String,
+    minlength: 2,
+    maxlength: 30,
+    default: 'Jacques-Yves Cousteau',
   },
-  about: { // у пользователя есть имя — опишем требования к имени в схеме:
-    type: String, // имя — это строка
-    minlength: 2, // минимальная длина имени — 2 символа
-    maxlength: 30, // а максимальная — 30 символов
-    default: 'Исследователь',
+  about: {
+    type: String,
+    minlength: 2,
+    maxlength: 30,
+    default: 'Researcher',
   },
-  avatar: { // у пользователя есть имя — опишем требования к имени в схеме:
-    type: String, // имя — это строка
+  avatar: {
+    type: String,
     default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
     validate: {
       validator(v) {
@@ -50,15 +50,15 @@ userSchema.statics.findUserByCredentials = function (email, password) {
   return this.findOne({ email }).select('+password')
     .then((user) => {
       if (user === null) {
-        throw new AuthError('Неправильные почта или пароль');
+        throw new AuthError('Incorrect email or password');
       }
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) {
-            throw new AuthError('Неправильные почта или пароль');
+            throw new AuthError('Incorrect email or password');
           }
 
-          return user; // теперь user доступен
+          return user; // The user is now available
         });
     });
 };
