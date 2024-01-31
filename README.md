@@ -24,7 +24,7 @@ Repository address: https://github.com/Valery-Gromov/react-mesto-api-full-gha
 - Use the `git clone` command to clone the repository:
 
 ```bash
-git clone https://github.com/your-username/repository-name.git
+git clone https://github.com/Valery-Gromov/react-mesto-api-full-gha.git
 ```
 
 **Step 2: Install Dependencies**
