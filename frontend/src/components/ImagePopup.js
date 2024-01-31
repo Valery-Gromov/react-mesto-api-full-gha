@@ -10,7 +10,7 @@ function ImagePopup(props) {
             <img src={card.link} alt={card.name} className="popup__image" />
             <h2 className="popup__header popup__header_place_image">{card.name}</h2>
             <button className="popup__close popup__close_place_image item-animation"><img src={closePopupButtonImage}
-                    alt="закрыть" className="popup__close-cross" onClick={onClose} />
+                    alt="close" className="popup__close-cross" onClick={onClose} />
             </button>
         </div>
     </div>

@@ -8,11 +8,11 @@ function EditProfilePopup(props) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
 
-    // Подписка на контекст
+    // Subscribing to the context
     const currentUser = React.useContext(CurrentUserContext);
 
-    // После загрузки текущего пользователя из API
-    // его данные будут использованы в управляемых компонентах.
+    // After downloading the current user from the API
+    // its data will be used in managed components.
     React.useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
@@ -37,14 +37,14 @@ function EditProfilePopup(props) {
 
     return (
 
-        <PopupWithForm onSubmit={handleSubmit} isOpen={props.isOpen && 'popup_opened'} title='Редактировать профиль' name='edit' buttonSave='Сохранить' onClose={props.onClose}>
+        <PopupWithForm onSubmit={handleSubmit} isOpen={props.isOpen && 'popup_opened'} title='Edit a profile' name='edit' buttonSave='Save' onClose={props.onClose}>
                 <label className="popup__label popup__label_type_name">
-                    <input id="name-input" name="name" type="text" placeholder="Имя"
+                    <input id="name-input" name="name" type="text" placeholder="Name"
                         className="popup__field popup__field_type_name" required minLength="2" maxLength="40" value={name || ''} onChange={handleNameChange} />
                     <span id="name-input-error" className="popup__field-error"></span>
                 </label>
                 <label className="popup__label popup__label_type_discription">
-                    <input id="discription-input" name="discription" type="text" placeholder="Вид деятельности"
+                    <input id="discription-input" name="discription" type="text" placeholder="Type of activity"
                         className="popup__field popup__field_type_discription" required minLength="2" maxLength="200" value={description || ''} onChange={handleDescriptionChange} />
                     <span id="discription-input-error" className="popup__field-error"></span>
                 </label>

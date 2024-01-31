@@ -15,20 +15,20 @@ function Main(props) {
         <main>
             <section className="profile">
                 <div className="profile__avatar-container" onClick={props.handleEditAvatarClick}>
-                    <img src={currentUser.avatar} alt="аватар пользователя" className="profile__avatar" />
+                    <img src={currentUser.avatar} alt="the user's avatar" className="profile__avatar" />
                 </div>
                 <div className="profile__info">
                     <div className="profile__name-container">
                         <h1 className="profile__name">{currentUser.name}</h1>
                         <button type="button" className="profile__edit-button item-animation" onClick={props.handleEditProfileClick}>
                             <img className="profile__edit-button-icon" src={profileEditButton}
-                                alt="Кнопка изменить профиль" />
+                                alt="The edit profile button" />
                         </button>
                     </div>
                     <p className="profile__discription">{currentUser.about}</p>
                 </div>
                 <button type="button" className="profile__add-button item-animation" onClick={props.handleAddPlaceClick}>
-                    <img className="profile__add-button-icon" src={profileAddButton} alt="кнопка добавить пост" />
+                    <img className="profile__add-button-icon" src={profileAddButton} alt="the add post button" />
                 </button>
             </section>
             <section className="elements">

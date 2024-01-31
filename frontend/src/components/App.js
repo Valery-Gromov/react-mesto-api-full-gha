@@ -236,7 +236,6 @@ function App() {
             <AddPlacePopup isOpen={isAddPlaceIsOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
             <ImagePopup card={selectedCard} onClose={closeAllPopups} />
             <InfoTooltip isOpen={isInfoTooltipIsOpen} image={infoTooltipData.image} text={infoTooltipData.text} onClose={closeAllPopups} />
-            {/* <InfoTooltip image={imgFail} text="Что-то пошло не так! Попробуйте ещё раз." /> */}
 
         </CurrentUserContext.Provider>
     );

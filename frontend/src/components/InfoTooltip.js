@@ -10,7 +10,7 @@ function InfoTooltip(props) {
                     <img src={props.image} className="popup__image" alt={props.text} />
                     <p className="popup__text">{props.text}</p>
                     <button className="popup__close popup__close_place_image item-animation"><img src={closePopupButtonImage}
-                        alt="закрыть" className="popup__close-cross" onClick={props.onClose} />
+                        alt="close" className="popup__close-cross" onClick={props.onClose} />
                     </button>
                 </div>
             </div>

@@ -13,16 +13,16 @@ function Header(props) {
   
   return (
         <header className='header'>
-            <img src={logo} alt="Логотип" className='header__logo'/>
+            <img src={logo} alt="Logo" className='header__logo'/>
             <nav>
               <ul className='header__menu'>
                 {window.location.pathname === "/signup" && 
                 (<li>
-                  <Link to="/signin" className='header__button'>Войти</Link>
+                  <Link to="/signin" className='header__button'>Login</Link>
                 </li>)}
                 {window.location.pathname === "/signin" && 
                 (<li>
-                  <Link to="/signup" className='header__button'>Регистрация</Link>
+                  <Link to="/signup" className='header__button'>Signup</Link>
                 </li>)}
                 {window.location.pathname === "/main" &&
                 (<li>
@@ -30,7 +30,7 @@ function Header(props) {
                 </li>)}
                 {window.location.pathname === "/main" &&
                 (<li>
-                  <p onClick={signOut} className='header__button'>Выйти</p>
+                  <p onClick={signOut} className='header__button'>Logout</p>
                 </li>)}
               </ul>
             </nav>

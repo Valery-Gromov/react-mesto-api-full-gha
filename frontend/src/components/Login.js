@@ -36,7 +36,7 @@ function Login(props) {
             console.log(err);
             props.setInfoTooltipData({
                image: imgFail,
-               text: `Что-то пошло не так! ${err}. Попробуйте ещё раз.`
+               text: `Something went wrong! ${err}. Try again.`
             });
             props.handleInfoTooltipIsOpen();
          })
@@ -47,11 +47,11 @@ function Login(props) {
       <section className="sign-up">
          <form className="sign-up__form" onSubmit={handleSubmit}>
             <h2 className="sign-up__title">
-               Вход
+               Login
             </h2>
             <input id="sign-up-email-input" name="userEmail" type="email" placeholder="Email" className="sign-up__input" required value={formValue.userEmail || ''} onChange={handleChange} />
-            <input id="sign-up-password-input" name="userPassword" type="password" placeholder="Пароль" className="sign-up__input sign-up__input_password" value={formValue.userPassword || ''} required onChange={handleChange} />
-            <button type="submit" className="sign-up__submit" >Войти</button>
+            <input id="sign-up-password-input" name="userPassword" type="password" placeholder="Password" className="sign-up__input sign-up__input_password" value={formValue.userPassword || ''} required onChange={handleChange} />
+            <button type="submit" className="sign-up__submit" >Login</button>
          </form>
       </section>
    );

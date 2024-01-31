@@ -5,12 +5,12 @@ function PageNotFound () {
     return (
       <div className="not-found">
         <h3 className="not-found__title">
-         <span>404</span> - Страница не найдена
+         <span>404</span> - The page was not found
         </h3>
         <p className="not-found__text">
-         Ой, здесь ничего нет
+        Oh, there's nothing here
         </p>
-        <Link className="not-found__link" to="/">Назад</Link>
+        <Link className="not-found__link" to="/">Back</Link>
       </div>
     )
   }

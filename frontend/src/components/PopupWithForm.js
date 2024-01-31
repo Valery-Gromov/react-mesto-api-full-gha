@@ -11,7 +11,7 @@ function PopupWithForm(props) {
                   <button type="submit" className="popup__save">{props.buttonSave}</button>
               </form>
               <button className="popup__close popup__close_place_edit item-animation"><img src={closePopupButtonImage}
-                      alt="закрыть" className="popup__close-cross" onClick={props.onClose} /></button>
+                      alt="close" className="popup__close-cross" onClick={props.onClose} /></button>
           </div>
         </div>
   );

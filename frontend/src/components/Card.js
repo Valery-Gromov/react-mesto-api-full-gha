@@ -18,10 +18,10 @@ function Card(props) {
         props.onCardDelete(card)
     }
 
-    // Определяем, являемся ли мы владельцем текущей карточки
+    // We determine whether we are the owner of the current card
     const isOwn = card.owner === currentUser._id;
 
-    // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
+    // We determine whether the card has a like set by the current user
     const isLiked = card.likes.some(owner => owner === currentUser._id);
 
     const cardLikeButtonClassName = ( 
