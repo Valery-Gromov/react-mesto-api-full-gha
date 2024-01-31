@@ -23,7 +23,7 @@ app.use(requestLogger);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
+    throw new Error('The server is about to crash');
   }, 0);
 });
 
@@ -45,7 +45,7 @@ app.post('/signup', celebrate({
 app.use(auth);
 app.use(routes);
 app.use('/*', (req, res, next) => {
-  next(new NotFoundError('Страница не найдена'));
+  next(new NotFoundError('The page was not found'));
 });
 
 app.use(errorLogger);
@@ -62,7 +62,7 @@ app.use((err, req, res, next) => {
     .send({
       // check the status and send a message depending on it
       message: statusCode === 500
-        ? 'На сервере произошла ошибка'
+        ? 'An error has occurred on the server'
         : message,
     });
 });
